@@ -1,0 +1,70 @@
+//Emma Hopkins -- this code reads the file's data
+import java.io.*;
+import java.util.*;
+public class  Driver3 {
+    public static myLinkedList S1;   // altered line for linked list implementation
+    public static myLinkedList S2;
+    public static Scanner inp;
+    public static File f;
+    public static String fname;
+
+    public static void main(String[] args) {
+        System.out.print("Please enter a path or name of input file : ");
+        inp = new Scanner(System.in);
+        fname = inp.nextLine();
+        f = new File(fname);
+        try {
+            inp = new Scanner(f);
+        } catch (Exception E) {
+            System.out.println("File not found");
+        }
+
+        int N = Integer.parseInt( inp.nextLine()) ;
+        S1 = new myLinkedList();    // NEW line for linked list implementation
+        S2 = new myLinkedList();    // NEW line for linked list implementation
+        while (inp.hasNextLine()) {
+            int x = Integer.parseInt(inp.nextLine());
+            Node n = new Node(x);
+
+            // pop out the first element
+            int tmp = S1.top();
+            S1.pop();
+
+            // while temporary stack is not empty and top
+            // of stack is greater than temp
+            while (!S2.empty() && S2.top() > tmp)
+            {
+                // pop from temporary stack and push
+                // it to the input stack
+                S1.push(S2.top());
+                S2.pop();
+            }
+
+            // push temp in temporary stack
+            S2.push(tmp);
+
+
+
+        }
+    }
+}
+
+// I am going to comment out your code and sketch out what you SHOULD be doing...
+
+/*            int tmp = S1.top()
+            S1.pop();
+
+            // while temporary stack is not empty and top
+            // of stack is greater than temp
+            while (!S2.empty() && S2.top() > tmp)
+            {
+                // pop from temporary stack and push
+                // it to the input stack
+                S1.push(S2.top());
+                S2.pop();
+            }
+
+            // push temp in temporary stack
+            S2.push(tmp);
+*/
+// ok - so start here and replace comments with correct code
